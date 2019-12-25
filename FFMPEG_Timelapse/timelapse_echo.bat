@@ -1,12 +1,4 @@
-SET /P _inputfile= Please enter an input file (with extension)... 
-SET /P _outputfile= Please enter an output file name (without extension)... 
-SET /P _outext= Please enter output extension... 
-SET /P _targetfps= Please enter target fps... 
-ECHO input %_inputfile% output %_outputfile% outext %_outext% targetfps %targetfps%
-ECHO ffmpeg -y -i %_inputfile% -c copy -f h264 %_outputfile%.h264
-ffmpeg -y -i %_inputfile% -c copy -f h264 %_outputfile%.h264
-ECHO ffmpeg -y -r %_targetfps% -i %_outputfile%.h264 -c copy %_outputfile%%_outext%
-ffmpeg -y -r %_targetfps% -i %_outputfile%.h264 -c copy %_outputfile%%_outext%
-ECHO del "%_outputfile%.h264"
-del "%_outputfile%.h264"
+ECHO ffmpeg -y -i %1 -c copy -f h264 %~dpn2.h264
+ECHO ffmpeg -y -r %3 -i %~dpn2.h264 -c copy %2
+ECHO del %~dpn2.h264
 ECHO DONE
